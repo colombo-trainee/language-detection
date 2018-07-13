@@ -1,7 +1,7 @@
 # language-detection
 | Build Status | Code Coverage | Version | Total Downloads | Maintenance | Minimum PHP Version | License |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [![Build Status](https://travis-ci.org/patrickschur/language-detection.svg?branch=master)](https://travis-ci.org/patrickschur/language-detection) | [![codecov](https://codecov.io/gh/patrickschur/language-detection/branch/master/graph/badge.svg)](https://codecov.io/gh/patrickschur/language-detection) | [![Version](https://img.shields.io/packagist/v/patrickschur/language-detection.svg?style=flat-square)](https://packagist.org/packages/patrickschur/language-detection) | [![Total Downloads](https://img.shields.io/packagist/dt/patrickschur/language-detection.svg?style=flat-square)](https://packagist.org/packages/patrickschur/language-detection) | [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg?style=flat-square)](https://github.com/patrickschur/language-detection) | [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-4AC51C.svg?style=flat-square)](http://php.net/) | [![License](https://img.shields.io/packagist/l/patrickschur/language-detection.svg?style=flat-square)](https://opensource.org/licenses/MIT) |
+| [![Build Status](https://travis-ci.org/patrickschur/language-detection.svg?branch=master)](https://travis-ci.org/patrickschur/language-detection) | [![codecov](https://codecov.io/gh/patrickschur/language-detection/branch/master/graph/badge.svg)](https://codecov.io/gh/patrickschur/language-detection) | [![Version](https://img.shields.io/packagist/v/patrickschur/language-detection.svg?style=flat-square)](https://packagist.org/packages/patrickschur/language-detection) | [![Total Downloads](https://img.shields.io/packagist/dt/patrickschur/language-detection.svg?style=flat-square)](https://packagist.org/packages/patrickschur/language-detection) | [![Maintenance](https://img.shields.io/maintenance/yes/2018.svg?style=flat-square)](https://github.com/patrickschur/language-detection) | [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-4AC51C.svg?style=flat-square)](http://php.net/) | [![License](https://img.shields.io/packagist/l/patrickschur/language-detection.svg?style=flat-square)](https://opensource.org/licenses/MIT) |
 
 This library can detect the language of a given text string.
 It can parse given training text in many different idioms into a sequence of [N-grams](https://en.wikipedia.org/wiki/N-gram) and builds a database file in JSON format to be used in the detection phase.
@@ -21,7 +21,7 @@ The library comes with text samples used for training and detecting text in 110 
 - [License](#license)
 
 ## Installation with Composer
-> **Note:** This library requires the [Multibyte String](http://php.net/manual/en/book.mbstring.php) extension in order to work. 
+> **Note:** This library requires the [Multibyte String](https://secure.php.net/manual/en/book.mbstring.php) extension in order to work. 
 
 ```bash
 $ composer require patrickschur/language-detection
@@ -56,9 +56,10 @@ Array
 
 ## API
 
-#### `__construct(array $result = [])`
+#### `__construct(array $result = [], string $dirname = '')`
 You can pass an array of languages to the constructor. To compare the desired sentence only with the given languages.
-This can dramatically increase the performance.
+This can dramatically increase the performance. 
+The other parameter is optional and the name of the directory where the translations files are located.
 ```php
 $ld = new Language(['de', 'en', 'nl']);
  
@@ -237,64 +238,7 @@ NULL
 
 ## Supported languages
 The library currently supports 110 languages.
-
-| Language | Language Code | Language | Language Code |
-| :--- | :--- | :--- | :--- |
-| Abkhaz | ab | Italian | it |
-| Afrikaans | af | Inuktitut | iu |
-| Amharic | am | Japanese | ja |
-| Arabic | ar | Javanese | jv |
-| Aymara | ay | Georgian | ka |
-| Azerbaijani, North (Cyrillic) | az-Cyrl | Khmer | km |
-| Azerbaijani, North (Latin) | az-Latn | Korean | ko |
-| Belarusan | be | Kanuri | kr |
-| Bulgarian | bg | Kurdish | ku |
-| Bislama | bi | Latin | la |
-| Bengali | bn | Ganda | lg |
-| Lingala | ln | Tibetan | bo |
-| Lao | lo | Breton | br |
-| Lithuanian | lt | Bosnian (Cyrillic) | bs-Cyrl |
-| Latvian | lv | Bosnian (Latin) | bs-Latn |
-| Marshallese | mh | Catalan | ca |
-| Mongolian, Halh (Cyrillic) | mn-Cyrl | Chamorro | ch |
-| Malay (Arabic) | ms-Arab | Corsican | co |
-| Malay (Latin) | ms-Latn | Cree | cr |
-| Maltese | mt | Czech | cs |
-| Norwegian, Bokmål | nb | Welsh | cy |
-| Ndonga | ng | German | de |
-| Dutch | nl | Danish | dk |
-| Norwegian, Nynorsk | nn | Dzongkha | dz |
-| Navajo | nv | Greek (monotonic) | el-monoton |
-| Polish | pl | Greek (polytonic) | el-polyton |
-| Portuguese (Brazil) | pt-BR | English | en |
-| Portuguese (Portugal) | pt-PT | Esperanto | eo |
-| Romanian | ro | Spanish | es |
-| Russian | ru | Sanskrit | sa |
-| Estonian | et | Slovak | sk |
-| Basque | eu | Slovene | sl |
-| Persian | fa | Somali | so |
-| Finnish | fi | Albanian | sq |
-| Fijian | fj | Swati | ss |
-| Faroese | fo | Swedish | sv |
-| French | fr | Tamil | ta |
-| Frisian | fy | Thai | th |
-| Gaelic, Irish | ga | Tagalog | tl |
-| Tonga | to | Gaelic, Scottish | gd |
-| Turkish | tr | Galician | gl |
-| Tatar | tt | Guarani | gn |
-| Tahitian | ty | Gujarati | gu |
-| Uyghur (Arabic) | ug-Arab | Hausa | ha |
-| Uyghur (Latin) | ug-Latn | Hebrew | he |
-| Ukrainian | uk | Urdu | ur |
-| Hindi | hi | Uzbek | uz |
-| Croatian | hr | Venda | ve |
-| Hungarian | hu | Vietnamese | vi |
-| Armenian | hy | Walloon | wa |
-| Interlingua | ia | Wolof | wo |
-| Indonesian | id | Xhosa | xh |
-| Igbo | ig | Yoruba | yo |
-| Ido | io | Chinese, Mandarin (Simplified) | zh-Hans |
-| Icelandic | is | Chinese, Mandarin (Traditional) | zh-Hant |
+To get an overview of all supported languages please have a look at [here](resources/README.md).
 <hr style="background-color:#666"/>
 
 ## Other languages
@@ -312,7 +256,13 @@ To do that, create a new directory in `resources` and add your training text to 
         |- spam.txt
 ```
 As you can see, we can also used it to detect spam or ham.
-If you have added your own files, you must first generate a language profile for it.
+
+When you stored your translation files outside of `resources`, you have to specify the path.
+```php
+$t->learn('YOUR_PATH_HERE');
+```
+
+Whenever you change one of the translation files you must first generate a language profile for it.
 This may take a few seconds.
 ```php
 use LanguageDetection\Trainer;

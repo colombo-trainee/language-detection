@@ -7,7 +7,7 @@ namespace LanguageDetection;
 /**
  * Class LanguageResult
  *
- * @copyright 2016-2017 Patrick Schur
+ * @copyright 2016-2018 Patrick Schur
  * @license https://opensource.org/licenses/mit-license.html MIT
  * @author Patrick Schur <patrick_schur@outlook.de>
  * @package LanguageDetection
@@ -83,7 +83,7 @@ class LanguageResult implements \JsonSerializable, \IteratorAggregate, \ArrayAcc
      */
     public function __toString(): string
     {
-        return key($this->result);
+        return (string) key($this->result);
     }
 
     /**
@@ -121,6 +121,7 @@ class LanguageResult implements \JsonSerializable, \IteratorAggregate, \ArrayAcc
         {
             return new LanguageResult;
         }
+
         $first = array_values($this->result)[0];
 
         return new LanguageResult(array_filter($this->result, function ($value) use ($first) {

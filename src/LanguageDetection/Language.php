@@ -7,7 +7,7 @@ namespace LanguageDetection;
 /**
  * Class Language
  *
- * @copyright 2016-2017 Patrick Schur
+ * @copyright 2016-2018 Patrick Schur
  * @license https://opensource.org/licenses/mit-license.html MIT
  * @author Patrick Schur <patrick_schur@outlook.de>
  * @package LanguageDetection
@@ -17,18 +17,33 @@ class Language extends NgramParser
     /**
      * @var array
      */
-    private $tokens = [];
+    protected $tokens = [];
 
     /**
      * Loads all language files
      *
-     * @param array $lang
+     * @param array $lang List of ISO 639-1 codes, that should be used in the detection phase
+     * @param string $dirname Name of the directory where the translations files are located
      */
-    public function __construct(array $lang = [])
+    public function __construct(array $lang = [], string $dirname = '')
     {
+        if (empty($dirname))
+        {
+            $dirname = __DIR__ . '/../../resources/*/*.json';
+        }
+        else if (!is_dir($dirname) || !is_readable($dirname))
+        {
+            throw new \InvalidArgumentException('Provided directory could not be found or is not readable');
+        }
+        else
+        {
+            $dirname = rtrim($dirname, '/');
+            $dirname .= '/*/*.json';
+        }
+
         $isEmpty = empty($lang);
 
-        foreach (glob(__DIR__ . '/../../resources/*/*.json') as $json)
+        foreach (glob($dirname) as $json)
         {
             if ($isEmpty || in_array(basename($json, '.json'), $lang))
             {
