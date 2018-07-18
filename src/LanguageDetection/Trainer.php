@@ -41,7 +41,7 @@ class Trainer extends NgramParser
         {
             $content = mb_strtolower(file_get_contents($txt->getPathname()));
 
-            echo $txt->getBasename('.txt'), PHP_EOL;
+//            echo $txt->getBasename('.txt'), PHP_EOL;
 
             file_put_contents(
                 substr_replace($txt->getPathname(), 'json', -3),
